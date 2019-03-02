@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Robo</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="<%= root_path %>">Robo</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li <% if [params[:controller], params[:action]] == ["products", "index"] %>class="active"<% end %>><%= link_to "Start", root_path%></li>
+      <li <% if [params[:controller], params[:action]] == ["static", "privacy"] %>class="active"<% end %>><%= link_to "Polityka prywantości", privacy_path%></li>
+      <li <% if [params[:controller], params[:action]] == ["static", "terms"] %>class="active"<% end %>><%= link_to "Regulamin", terms_path%></li>
+      <li <% if [params[:controller], params[:action]] == ["static", "shipping"] %>class="active"<% end %>><%= link_to "Dostawa", shipping_path%></li>
+      <li <% if [params[:controller], params[:action]] == ["static", "about"] %>class="active"<% end %>><%= link_to "O sklepie", about_path%></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <h3>Kategorie</h3>
+        <ul class="nav nav-sidebar">
+          <% Category.all.each do |category| %>
+            <li <% if @category == category %>class="active"<% end %>>
+              <%= link_to category.name, category_path(category) %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+        <div class="col-md-10">
+          <%= yield %>
+        </div>
+    </div>
+  </div>
+
+</body>
+</html>

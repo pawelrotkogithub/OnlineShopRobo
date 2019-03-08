@@ -30,9 +30,11 @@ gem 'simple_form', '~> 4.1'
 gem 'twitter-bootstrap-rails', '~> 4.0'
 gem 'ransack', '~> 2.1', '>= 2.1.1'
 gem 'kaminari', '~> 1.1', '>= 1.1.1'
-gem 'rails-i18n', '~> 5.1', '>= 5.1.3'
 gem 'statesman', '~> 4.0'
 gem "font-awesome-rails"
+gem 'hirb'
+gem 'byebug'
+gem 'rails-i18n', '~> 5.1', '>= 5.1.3'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

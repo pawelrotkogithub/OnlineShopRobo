@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
   <head>
     <title>Robo</title>
@@ -23,8 +23,26 @@
       <li <% if [params[:controller], params[:action]] == ["static", "shipping"] %>class="active"<% end %>><%= link_to "Dostawa", shipping_path%></li>
       <li <% if [params[:controller], params[:action]] == ["static", "about"] %>class="active"<% end %>><%= link_to "O sklepie", about_path%></li>
     </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <%= link_to cart_path do %>
+        <span class="fa fa-shopping-cart"></span>
+        <%= current_cart.line_items.map {|e| e.quantity}.sum %>
+        produktów za
+        <%= number_to_currency(current_cart.line_items.map {|e| e.full_price}.sum ) %>
+        <% end %>
+      </li>
+    </ul>
   </div>
 </nav>
+
+<div class="container">
+    <% if flash[:notice] %>
+    <div class ="alert alert-success" >
+    <%= flash[:notice] %>
+    </div>
+    <% end %>
+</div>
 
 <div class="container-fluid">
   <div class="row">
